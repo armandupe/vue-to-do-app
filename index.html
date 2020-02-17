@@ -1,20 +1,48 @@
-<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-<div id="app">
-  <h1>TODOS</h1>
-  <input type="text" class="nes-input" placeholder="Add todo..." v-on:keyup.enter="addTodo">     
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VUE to-do-list</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <h1>TODOS</h1>
+      <input type="text" class="" placeholder="Add todo..." v-on:keyup.enter="addTodo">     
+      <ul>
+        <li v-for="todo in todos" :key="todo.id" class="">
+          <label>
+            <input type="checkbox" class="nes-checkbox" v-model="todo.done">
+            <span>&nbsp</span>
+          </label>
+          <del v-if="todo.done">{{ todo.text }}</del>
+          <span v-else>{{ todo.text }}</span>
+          <div class=""></div>
+          <button class="" v-on:click="removeTodo(todo.id)">X</button>
+        </li>
+      </ul>
+    </div>
     
-  <ul>
-    <li v-for="todo in todos" :key="todo.id" class="flex">
-      <label>
-        <input type="checkbox" class="nes-checkbox" v-model="todo.done">
-        <span>&nbsp</span>
-      </label>
-      <del v-if="todo.done">{{ todo.text }}</del>
-      <span v-else>{{ todo.text }}</span>
-      <div class="space"></div>
-      <button class="nes-btn is-error padding" v-on:click="removeTodo(todo.id)">X</button>
-    </li>
-  </ul>
-</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          todos: [
+            { text: 'todo 1', done: false, id: Date.now() },
+            { text: 'todo 2', done: false, id: Date.now() + 1 }
+          ]
+        },
+        methods: {
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        }
+      })     
+    </script>
+  </body>
+</html>
