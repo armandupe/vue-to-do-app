@@ -6,43 +6,58 @@
     <title>VUE to-do-list</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div id="app">
-      <h1>TODOS</h1>
-      <input type="text" class="" placeholder="Add todo..." v-on:keyup.enter="addTodo">     
-      <ul>
-        <li v-for="todo in todos" :key="todo.id" class="">
-          <label>
-            <input type="checkbox" class="nes-checkbox" v-model="todo.done">
-            <span>&nbsp</span>
+      <svg class="todo-app__icon" height="464pt" viewBox="-48 0 464 464" width="464pt" xmlns="http://www.w3.org/2000/svg">
+        <path d="m368 80v352c0 17.671875-14.328125 32-32 32h-256c-17.671875 0-32-14.328125-32-32v-16h240c17.671875 0 32-14.328125 32-32v-336h16c17.671875 0 32 14.328125 32 32zm0 0" fill="#d1d3d4"/>
+        <path d="m32 0h256c17.671875 0 32 14.328125 32 32v352c0 17.671875-14.328125 32-32 32h-256c-17.671875 0-32-14.328125-32-32v-352c0-17.671875 14.328125-32 32-32zm0 0" fill="#e6e7e8"/>
+        <path d="m336 48v352c0 17.671875-14.328125 32-32 32h-256v-16h240c17.671875 0 32-14.328125 32-32v-336zm0 0" fill="#bcbec0"/>
+        <path d="m248 40 24 24v-64h-48v64zm0 0" fill="#ff6243"/>
+        <path d="m320 128.640625v255.359375c0 17.671875-14.328125 32-32 32h-256c-17.671875 0-32-14.328125-32-32v-8.878906c96.238281-36.480469 232.878906-109.359375 320-246.480469zm0 0" fill="#d8d7da"/>
+        <g fill="#ffb655">
+        <path d="m48 72v64h64v-64zm0 0"/>
+        <path d="m48 248h64v-64h-64zm0 0"/>
+        <path d="m48 288h64v64h-64zm0 0"/>
+        </g>
+        <path d="m88 120c-2.121094 0-4.15625-.84375-5.65625-2.34375l-16-16 11.3125-11.3125 10.34375 10.34375 42.34375-42.34375 11.3125 11.3125-48 48c-1.5 1.5-3.535156 2.34375-5.65625 2.34375zm0 0" fill="#ff5023"/>
+        <path d="m88 232c-2.121094 0-4.15625-.84375-5.65625-2.34375l-16-16 11.3125-11.3125 10.34375 10.34375 42.34375-42.34375 11.3125 11.3125-48 48c-1.5 1.5-3.535156 2.34375-5.65625 2.34375zm0 0" fill="#ff5023"/>
+        <path d="m152 112h80v16h-80zm0 0" fill="#acabb1"/>
+        <path d="m152 80h48v16h-48zm0 0" fill="#898890"/>
+        <path d="m152 224h80v16h-80zm0 0" fill="#acabb1"/>
+        <path d="m152 192h48v16h-48zm0 0" fill="#898890"/>
+        <path d="m152 328h80v16h-80zm0 0" fill="#acabb1"/>
+        <path d="m152 296h48v16h-48zm0 0" fill="#898890"/>
+        <path d="m216 296h16v16h-16zm0 0" fill="#acabb1"/>
+      </svg>
+      <h1 class="todo-app__title">Tasks to do</h1>
+      <input type="text" class="todo-app__input" placeholder="Add todo..." v-on:keyup.enter="addTodo">     
+      <ul class="todo-app__list">
+        <li class="todo-app__list-element" v-for="todo in todos" :key="todo.id" class="">
+          <label class="todo-app__label">
+            <input type="checkbox" class="todo-app__checkbox" v-model="todo.done">
+            <span class="todo-app__checkbox-checkmark"></span>
           </label>
-          <del v-if="todo.done">{{ todo.text }}</del>
-          <span v-else>{{ todo.text }}</span>
-          <div class=""></div>
-          <button class="" v-on:click="removeTodo(todo.id)">X</button>
+          <del class="todo-app__del-text" v-if="todo.done">{{ todo.text }}</del>
+          <span class="todo-app__todo-text" v-else>{{ todo.text }}</span>
+          <button class="todo-app__btn-remove-todo" v-on:click="removeTodo(todo.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455.111 455.111">
+                <circle style="fill:#E24C4B;" cx="227.556" cy="227.556" r="227.556"/>
+                <path style="fill:#D1403F;" d="M455.111,227.556c0,125.156-102.4,227.556-227.556,227.556c-72.533,0-136.533-32.711-177.778-85.333
+                  c38.4,31.289,88.178,49.778,142.222,49.778c125.156,0,227.556-102.4,227.556-227.556c0-54.044-18.489-103.822-49.778-142.222
+                  C422.4,91.022,455.111,155.022,455.111,227.556z"/>
+                <path style="fill:#FFFFFF;" d="M331.378,331.378c-8.533,8.533-22.756,8.533-31.289,0l-72.533-72.533l-72.533,72.533
+                  c-8.533,8.533-22.756,8.533-31.289,0c-8.533-8.533-8.533-22.756,0-31.289l72.533-72.533l-72.533-72.533
+                  c-8.533-8.533-8.533-22.756,0-31.289c8.533-8.533,22.756-8.533,31.289,0l72.533,72.533l72.533-72.533
+                  c8.533-8.533,22.756-8.533,31.289,0c8.533,8.533,8.533,22.756,0,31.289l-72.533,72.533l72.533,72.533
+                  C339.911,308.622,339.911,322.844,331.378,331.378z"/>
+              </svg>
+          </button>
         </li>
       </ul>
     </div>
-    
-    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    
-    <script>
-      new Vue({
-        el: "#app",
-        data: {
-          todos: [
-            { text: 'todo 1', done: false, id: Date.now() },
-            { text: 'todo 2', done: false, id: Date.now() + 1 }
-          ]
-        },
-        methods: {
-
-        }
-      })     
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
