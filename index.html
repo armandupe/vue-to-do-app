@@ -7,32 +7,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap&subset=cyrillic" rel="stylesheet">
   </head>
   <body>
-    <div id="app">
-      <svg class="todo-app__icon" height="464pt" viewBox="-48 0 464 464" width="464pt" xmlns="http://www.w3.org/2000/svg">
-        <path d="m368 80v352c0 17.671875-14.328125 32-32 32h-256c-17.671875 0-32-14.328125-32-32v-16h240c17.671875 0 32-14.328125 32-32v-336h16c17.671875 0 32 14.328125 32 32zm0 0" fill="#d1d3d4"/>
-        <path d="m32 0h256c17.671875 0 32 14.328125 32 32v352c0 17.671875-14.328125 32-32 32h-256c-17.671875 0-32-14.328125-32-32v-352c0-17.671875 14.328125-32 32-32zm0 0" fill="#e6e7e8"/>
-        <path d="m336 48v352c0 17.671875-14.328125 32-32 32h-256v-16h240c17.671875 0 32-14.328125 32-32v-336zm0 0" fill="#bcbec0"/>
-        <path d="m248 40 24 24v-64h-48v64zm0 0" fill="#ff6243"/>
-        <path d="m320 128.640625v255.359375c0 17.671875-14.328125 32-32 32h-256c-17.671875 0-32-14.328125-32-32v-8.878906c96.238281-36.480469 232.878906-109.359375 320-246.480469zm0 0" fill="#d8d7da"/>
-        <g fill="#ffb655">
-        <path d="m48 72v64h64v-64zm0 0"/>
-        <path d="m48 248h64v-64h-64zm0 0"/>
-        <path d="m48 288h64v64h-64zm0 0"/>
-        </g>
-        <path d="m88 120c-2.121094 0-4.15625-.84375-5.65625-2.34375l-16-16 11.3125-11.3125 10.34375 10.34375 42.34375-42.34375 11.3125 11.3125-48 48c-1.5 1.5-3.535156 2.34375-5.65625 2.34375zm0 0" fill="#ff5023"/>
-        <path d="m88 232c-2.121094 0-4.15625-.84375-5.65625-2.34375l-16-16 11.3125-11.3125 10.34375 10.34375 42.34375-42.34375 11.3125 11.3125-48 48c-1.5 1.5-3.535156 2.34375-5.65625 2.34375zm0 0" fill="#ff5023"/>
-        <path d="m152 112h80v16h-80zm0 0" fill="#acabb1"/>
-        <path d="m152 80h48v16h-48zm0 0" fill="#898890"/>
-        <path d="m152 224h80v16h-80zm0 0" fill="#acabb1"/>
-        <path d="m152 192h48v16h-48zm0 0" fill="#898890"/>
-        <path d="m152 328h80v16h-80zm0 0" fill="#acabb1"/>
-        <path d="m152 296h48v16h-48zm0 0" fill="#898890"/>
-        <path d="m216 296h16v16h-16zm0 0" fill="#acabb1"/>
-      </svg>
+    <main id="app">
+      <img class="todo-app__list-icon" alt="list" width="100" height="100" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjQ2NHB0IiB2aWV3Qm94PSItNDggMCA0NjQgNDY0IiB3aWR0aD0iNDY0cHQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM2OCA4MHYzNTJjMCAxNy42NzE4NzUtMTQuMzI4MTI1IDMyLTMyIDMyaC0yNTZjLTE3LjY3MTg3NSAwLTMyLTE0LjMyODEyNS0zMi0zMnYtMTZoMjQwYzE3LjY3MTg3NSAwIDMyLTE0LjMyODEyNSAzMi0zMnYtMzM2aDE2YzE3LjY3MTg3NSAwIDMyIDE0LjMyODEyNSAzMiAzMnptMCAwIiBmaWxsPSIjZDFkM2Q0Ii8+PHBhdGggZD0ibTMyIDBoMjU2YzE3LjY3MTg3NSAwIDMyIDE0LjMyODEyNSAzMiAzMnYzNTJjMCAxNy42NzE4NzUtMTQuMzI4MTI1IDMyLTMyIDMyaC0yNTZjLTE3LjY3MTg3NSAwLTMyLTE0LjMyODEyNS0zMi0zMnYtMzUyYzAtMTcuNjcxODc1IDE0LjMyODEyNS0zMiAzMi0zMnptMCAwIiBmaWxsPSIjZTZlN2U4Ii8+PHBhdGggZD0ibTMzNiA0OHYzNTJjMCAxNy42NzE4NzUtMTQuMzI4MTI1IDMyLTMyIDMyaC0yNTZ2LTE2aDI0MGMxNy42NzE4NzUgMCAzMi0xNC4zMjgxMjUgMzItMzJ2LTMzNnptMCAwIiBmaWxsPSIjYmNiZWMwIi8+PHBhdGggZD0ibTI0OCA0MCAyNCAyNHYtNjRoLTQ4djY0em0wIDAiIGZpbGw9IiNmZjYyNDMiLz48cGF0aCBkPSJtMzIwIDEyOC42NDA2MjV2MjU1LjM1OTM3NWMwIDE3LjY3MTg3NS0xNC4zMjgxMjUgMzItMzIgMzJoLTI1NmMtMTcuNjcxODc1IDAtMzItMTQuMzI4MTI1LTMyLTMydi04Ljg3ODkwNmM5Ni4yMzgyODEtMzYuNDgwNDY5IDIzMi44Nzg5MDYtMTA5LjM1OTM3NSAzMjAtMjQ2LjQ4MDQ2OXptMCAwIiBmaWxsPSIjZDhkN2RhIi8+PGcgZmlsbD0iI2ZmYjY1NSI+PHBhdGggZD0ibTQ4IDcydjY0aDY0di02NHptMCAwIi8+PHBhdGggZD0ibTQ4IDI0OGg2NHYtNjRoLTY0em0wIDAiLz48cGF0aCBkPSJtNDggMjg4aDY0djY0aC02NHptMCAwIi8+PC9nPjxwYXRoIGQ9Im04OCAxMjBjLTIuMTIxMDk0IDAtNC4xNTYyNS0uODQzNzUtNS42NTYyNS0yLjM0Mzc1bC0xNi0xNiAxMS4zMTI1LTExLjMxMjUgMTAuMzQzNzUgMTAuMzQzNzUgNDIuMzQzNzUtNDIuMzQzNzUgMTEuMzEyNSAxMS4zMTI1LTQ4IDQ4Yy0xLjUgMS41LTMuNTM1MTU2IDIuMzQzNzUtNS42NTYyNSAyLjM0Mzc1em0wIDAiIGZpbGw9IiNmZjUwMjMiLz48cGF0aCBkPSJtODggMjMyYy0yLjEyMTA5NCAwLTQuMTU2MjUtLjg0Mzc1LTUuNjU2MjUtMi4zNDM3NWwtMTYtMTYgMTEuMzEyNS0xMS4zMTI1IDEwLjM0Mzc1IDEwLjM0Mzc1IDQyLjM0Mzc1LTQyLjM0Mzc1IDExLjMxMjUgMTEuMzEyNS00OCA0OGMtMS41IDEuNS0zLjUzNTE1NiAyLjM0Mzc1LTUuNjU2MjUgMi4zNDM3NXptMCAwIiBmaWxsPSIjZmY1MDIzIi8+PHBhdGggZD0ibTE1MiAxMTJoODB2MTZoLTgwem0wIDAiIGZpbGw9IiNhY2FiYjEiLz48cGF0aCBkPSJtMTUyIDgwaDQ4djE2aC00OHptMCAwIiBmaWxsPSIjODk4ODkwIi8+PHBhdGggZD0ibTE1MiAyMjRoODB2MTZoLTgwem0wIDAiIGZpbGw9IiNhY2FiYjEiLz48cGF0aCBkPSJtMTUyIDE5Mmg0OHYxNmgtNDh6bTAgMCIgZmlsbD0iIzg5ODg5MCIvPjxwYXRoIGQ9Im0xNTIgMzI4aDgwdjE2aC04MHptMCAwIiBmaWxsPSIjYWNhYmIxIi8+PHBhdGggZD0ibTE1MiAyOTZoNDh2MTZoLTQ4em0wIDAiIGZpbGw9IiM4OTg4OTAiLz48cGF0aCBkPSJtMjE2IDI5NmgxNnYxNmgtMTZ6bTAgMCIgZmlsbD0iI2FjYWJiMSIvPjwvc3ZnPg==">
       <h1 class="todo-app__title">Tasks to do</h1>
-      <input type="text" class="todo-app__input" placeholder="Add todo..." v-on:keyup.enter="addTodo">     
+      <div class="todo-app__input-container">
+        <input type="text" class="todo-app__input" placeholder="Add todo..." v-on:keyup.enter="addTodo">
+        <button v-on:click="addTodoOnClick" class="input-add-btn">Add</button>
+      </div>     
       <ul class="todo-app__list">
         <li class="todo-app__list-element" v-for="todo in todos" :key="todo.id" class="">
           <label class="todo-app__label">
@@ -41,22 +25,13 @@
           </label>
           <del class="todo-app__del-text" v-if="todo.done">{{ todo.text }}</del>
           <span class="todo-app__todo-text" v-else>{{ todo.text }}</span>
-          <button class="todo-app__btn-remove-todo" v-on:click="removeTodo(todo.id)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455.111 455.111">
-                <circle style="fill:#E24C4B;" cx="227.556" cy="227.556" r="227.556"/>
-                <path style="fill:#D1403F;" d="M455.111,227.556c0,125.156-102.4,227.556-227.556,227.556c-72.533,0-136.533-32.711-177.778-85.333
-                  c38.4,31.289,88.178,49.778,142.222,49.778c125.156,0,227.556-102.4,227.556-227.556c0-54.044-18.489-103.822-49.778-142.222
-                  C422.4,91.022,455.111,155.022,455.111,227.556z"/>
-                <path style="fill:#FFFFFF;" d="M331.378,331.378c-8.533,8.533-22.756,8.533-31.289,0l-72.533-72.533l-72.533,72.533
-                  c-8.533,8.533-22.756,8.533-31.289,0c-8.533-8.533-8.533-22.756,0-31.289l72.533-72.533l-72.533-72.533
-                  c-8.533-8.533-8.533-22.756,0-31.289c8.533-8.533,22.756-8.533,31.289,0l72.533,72.533l72.533-72.533
-                  c8.533-8.533,22.756-8.533,31.289,0c8.533,8.533,8.533,22.756,0,31.289l-72.533,72.533l72.533,72.533
-                  C339.911,308.622,339.911,322.844,331.378,331.378z"/>
-              </svg>
+          <button class="todo-app__btn-remove-todo" v-if="todo.done" v-on:click="removeTodo(todo.id)">
+              <img class="todo-app__close-icon" alt="close" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDU1LjExMSA0NTUuMTExIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NTUuMTExIDQ1NS4xMTE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgc3R5bGU9ImZpbGw6I0UyNEM0QjsiIGN4PSIyMjcuNTU2IiBjeT0iMjI3LjU1NiIgcj0iMjI3LjU1NiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0QxNDAzRjsiIGQ9Ik00NTUuMTExLDIyNy41NTZjMCwxMjUuMTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NiwyMjcuNTU2Yy03Mi41MzMsMC0xMzYuNTMzLTMyLjcxMS0xNzcuNzc4LTg1LjMzMw0KCWMzOC40LDMxLjI4OSw4OC4xNzgsNDkuNzc4LDE0Mi4yMjIsNDkuNzc4YzEyNS4xNTYsMCwyMjcuNTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NmMwLTU0LjA0NC0xOC40ODktMTAzLjgyMi00OS43NzgtMTQyLjIyMg0KCUM0MjIuNCw5MS4wMjIsNDU1LjExMSwxNTUuMDIyLDQ1NS4xMTEsMjI3LjU1NnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMzMxLjM3OCwzMzEuMzc4Yy04LjUzMyw4LjUzMy0yMi43NTYsOC41MzMtMzEuMjg5LDBsLTcyLjUzMy03Mi41MzNsLTcyLjUzMyw3Mi41MzMNCgljLTguNTMzLDguNTMzLTIyLjc1Niw4LjUzMy0zMS4yODksMGMtOC41MzMtOC41MzMtOC41MzMtMjIuNzU2LDAtMzEuMjg5bDcyLjUzMy03Mi41MzNsLTcyLjUzMy03Mi41MzMNCgljLTguNTMzLTguNTMzLTguNTMzLTIyLjc1NiwwLTMxLjI4OWM4LjUzMy04LjUzMywyMi43NTYtOC41MzMsMzEuMjg5LDBsNzIuNTMzLDcyLjUzM2w3Mi41MzMtNzIuNTMzDQoJYzguNTMzLTguNTMzLDIyLjc1Ni04LjUzMywzMS4yODksMGM4LjUzMyw4LjUzMyw4LjUzMywyMi43NTYsMCwzMS4yODlsLTcyLjUzMyw3Mi41MzNsNzIuNTMzLDcyLjUzMw0KCUMzMzkuOTExLDMwOC42MjIsMzM5LjkxMSwzMjIuODQ0LDMzMS4zNzgsMzMxLjM3OHoiLz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
           </button>
         </li>
+        <a v-on:click="removeAll" class="btn-del-all">Delete all</a>
       </ul>
-    </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="script.js"></script>
   </body>
