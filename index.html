@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>VUE to-do-list</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap&subset=cyrillic" rel="stylesheet">
-  </head>
-  <body>
-    <main id="app">
-      <img class="todo-app__list-icon" alt="list" width="100" height="100" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjQ2NHB0IiB2aWV3Qm94PSItNDggMCA0NjQgNDY0IiB3aWR0aD0iNDY0cHQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM2OCA4MHYzNTJjMCAxNy42NzE4NzUtMTQuMzI4MTI1IDMyLTMyIDMyaC0yNTZjLTE3LjY3MTg3NSAwLTMyLTE0LjMyODEyNS0zMi0zMnYtMTZoMjQwYzE3LjY3MTg3NSAwIDMyLTE0LjMyODEyNSAzMi0zMnYtMzM2aDE2YzE3LjY3MTg3NSAwIDMyIDE0LjMyODEyNSAzMiAzMnptMCAwIiBmaWxsPSIjZDFkM2Q0Ii8+PHBhdGggZD0ibTMyIDBoMjU2YzE3LjY3MTg3NSAwIDMyIDE0LjMyODEyNSAzMiAzMnYzNTJjMCAxNy42NzE4NzUtMTQuMzI4MTI1IDMyLTMyIDMyaC0yNTZjLTE3LjY3MTg3NSAwLTMyLTE0LjMyODEyNS0zMi0zMnYtMzUyYzAtMTcuNjcxODc1IDE0LjMyODEyNS0zMiAzMi0zMnptMCAwIiBmaWxsPSIjZTZlN2U4Ii8+PHBhdGggZD0ibTMzNiA0OHYzNTJjMCAxNy42NzE4NzUtMTQuMzI4MTI1IDMyLTMyIDMyaC0yNTZ2LTE2aDI0MGMxNy42NzE4NzUgMCAzMi0xNC4zMjgxMjUgMzItMzJ2LTMzNnptMCAwIiBmaWxsPSIjYmNiZWMwIi8+PHBhdGggZD0ibTI0OCA0MCAyNCAyNHYtNjRoLTQ4djY0em0wIDAiIGZpbGw9IiNmZjYyNDMiLz48cGF0aCBkPSJtMzIwIDEyOC42NDA2MjV2MjU1LjM1OTM3NWMwIDE3LjY3MTg3NS0xNC4zMjgxMjUgMzItMzIgMzJoLTI1NmMtMTcuNjcxODc1IDAtMzItMTQuMzI4MTI1LTMyLTMydi04Ljg3ODkwNmM5Ni4yMzgyODEtMzYuNDgwNDY5IDIzMi44Nzg5MDYtMTA5LjM1OTM3NSAzMjAtMjQ2LjQ4MDQ2OXptMCAwIiBmaWxsPSIjZDhkN2RhIi8+PGcgZmlsbD0iI2ZmYjY1NSI+PHBhdGggZD0ibTQ4IDcydjY0aDY0di02NHptMCAwIi8+PHBhdGggZD0ibTQ4IDI0OGg2NHYtNjRoLTY0em0wIDAiLz48cGF0aCBkPSJtNDggMjg4aDY0djY0aC02NHptMCAwIi8+PC9nPjxwYXRoIGQ9Im04OCAxMjBjLTIuMTIxMDk0IDAtNC4xNTYyNS0uODQzNzUtNS42NTYyNS0yLjM0Mzc1bC0xNi0xNiAxMS4zMTI1LTExLjMxMjUgMTAuMzQzNzUgMTAuMzQzNzUgNDIuMzQzNzUtNDIuMzQzNzUgMTEuMzEyNSAxMS4zMTI1LTQ4IDQ4Yy0xLjUgMS41LTMuNTM1MTU2IDIuMzQzNzUtNS42NTYyNSAyLjM0Mzc1em0wIDAiIGZpbGw9IiNmZjUwMjMiLz48cGF0aCBkPSJtODggMjMyYy0yLjEyMTA5NCAwLTQuMTU2MjUtLjg0Mzc1LTUuNjU2MjUtMi4zNDM3NWwtMTYtMTYgMTEuMzEyNS0xMS4zMTI1IDEwLjM0Mzc1IDEwLjM0Mzc1IDQyLjM0Mzc1LTQyLjM0Mzc1IDExLjMxMjUgMTEuMzEyNS00OCA0OGMtMS41IDEuNS0zLjUzNTE1NiAyLjM0Mzc1LTUuNjU2MjUgMi4zNDM3NXptMCAwIiBmaWxsPSIjZmY1MDIzIi8+PHBhdGggZD0ibTE1MiAxMTJoODB2MTZoLTgwem0wIDAiIGZpbGw9IiNhY2FiYjEiLz48cGF0aCBkPSJtMTUyIDgwaDQ4djE2aC00OHptMCAwIiBmaWxsPSIjODk4ODkwIi8+PHBhdGggZD0ibTE1MiAyMjRoODB2MTZoLTgwem0wIDAiIGZpbGw9IiNhY2FiYjEiLz48cGF0aCBkPSJtMTUyIDE5Mmg0OHYxNmgtNDh6bTAgMCIgZmlsbD0iIzg5ODg5MCIvPjxwYXRoIGQ9Im0xNTIgMzI4aDgwdjE2aC04MHptMCAwIiBmaWxsPSIjYWNhYmIxIi8+PHBhdGggZD0ibTE1MiAyOTZoNDh2MTZoLTQ4em0wIDAiIGZpbGw9IiM4OTg4OTAiLz48cGF0aCBkPSJtMjE2IDI5NmgxNnYxNmgtMTZ6bTAgMCIgZmlsbD0iI2FjYWJiMSIvPjwvc3ZnPg==">
-      <h1 class="todo-app__title">Tasks to do</h1>
-      <div class="todo-app__input-container">
-        <input type="text" class="todo-app__input" placeholder="Add todo..." v-on:keyup.enter="addTodo">
-        <button v-on:click="addTodoOnClick" class="input-add-btn">Add</button>
-      </div>     
-      <ul class="todo-app__list">
-        <li class="todo-app__list-element" v-for="todo in todos" :key="todo.id" class="">
-          <label class="todo-app__label">
-            <input type="checkbox" class="todo-app__checkbox" v-model="todo.done">
-            <span class="todo-app__checkbox-checkmark"></span>
-          </label>
-          <del class="todo-app__del-text" v-if="todo.done">{{ todo.text }}</del>
-          <span class="todo-app__todo-text" v-else>{{ todo.text }}</span>
-          <button class="todo-app__btn-remove-todo" v-if="todo.done" v-on:click="removeTodo(todo.id)">
-              <img class="todo-app__close-icon" alt="close" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDU1LjExMSA0NTUuMTExIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NTUuMTExIDQ1NS4xMTE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgc3R5bGU9ImZpbGw6I0UyNEM0QjsiIGN4PSIyMjcuNTU2IiBjeT0iMjI3LjU1NiIgcj0iMjI3LjU1NiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0QxNDAzRjsiIGQ9Ik00NTUuMTExLDIyNy41NTZjMCwxMjUuMTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NiwyMjcuNTU2Yy03Mi41MzMsMC0xMzYuNTMzLTMyLjcxMS0xNzcuNzc4LTg1LjMzMw0KCWMzOC40LDMxLjI4OSw4OC4xNzgsNDkuNzc4LDE0Mi4yMjIsNDkuNzc4YzEyNS4xNTYsMCwyMjcuNTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NmMwLTU0LjA0NC0xOC40ODktMTAzLjgyMi00OS43NzgtMTQyLjIyMg0KCUM0MjIuNCw5MS4wMjIsNDU1LjExMSwxNTUuMDIyLDQ1NS4xMTEsMjI3LjU1NnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMzMxLjM3OCwzMzEuMzc4Yy04LjUzMyw4LjUzMy0yMi43NTYsOC41MzMtMzEuMjg5LDBsLTcyLjUzMy03Mi41MzNsLTcyLjUzMyw3Mi41MzMNCgljLTguNTMzLDguNTMzLTIyLjc1Niw4LjUzMy0zMS4yODksMGMtOC41MzMtOC41MzMtOC41MzMtMjIuNzU2LDAtMzEuMjg5bDcyLjUzMy03Mi41MzNsLTcyLjUzMy03Mi41MzMNCgljLTguNTMzLTguNTMzLTguNTMzLTIyLjc1NiwwLTMxLjI4OWM4LjUzMy04LjUzMywyMi43NTYtOC41MzMsMzEuMjg5LDBsNzIuNTMzLDcyLjUzM2w3Mi41MzMtNzIuNTMzDQoJYzguNTMzLTguNTMzLDIyLjc1Ni04LjUzMywzMS4yODksMGM4LjUzMyw4LjUzMyw4LjUzMywyMi43NTYsMCwzMS4yODlsLTcyLjUzMyw3Mi41MzNsNzIuNTMzLDcyLjUzMw0KCUMzMzkuOTExLDMwOC42MjIsMzM5LjkxMSwzMjIuODQ0LDMzMS4zNzgsMzMxLjM3OHoiLz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
-          </button>
-        </li>
-        <a v-on:click="removeAll" class="btn-del-all">Delete all</a>
-      </ul>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="script.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VUE to-do-list</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <main id="app">
+    <h1 class="todo-app__title">Задачи</h1>
+    <div class="todo-app__input-error-msg"></div>
+    <div class="todo-app__input-container">
+      <label class="hidden" for="addToDo"></label>
+      <input id="addToDo" type="text" class="todo-app__input" placeholder="Что вам нужно сделать?" v-on:keyup.enter="addTodo">
+      <button v-on:click="addTodo" class="input-add-btn">Добавить</button>
+    </div>
+    <ul class="todo-app__list">
+      <li class="todo-app__list-element" v-for="todo in todos" :key="todo.id" class="">
+        <label class="todo-app__label">
+          <input type="checkbox" class="todo-app__checkbox" v-model="todo.done">
+          <span class="todo-app__checkbox-checkmark"></span>
+        </label>
+        <del class="todo-app__del-text" v-if="todo.done">{{ todo.text }}</del>
+        <span class="todo-app__todo-text" v-else>{{ todo.text }}</span>
+        <button class="todo-app__btn-remove-todo" v-if="todo.done" v-on:click="deleteTodo(todo.id)">
+          <img class="todo-app__close-icon" alt="close"
+            src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDU1LjExMSA0NTUuMTExIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NTUuMTExIDQ1NS4xMTE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgc3R5bGU9ImZpbGw6I0UyNEM0QjsiIGN4PSIyMjcuNTU2IiBjeT0iMjI3LjU1NiIgcj0iMjI3LjU1NiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0QxNDAzRjsiIGQ9Ik00NTUuMTExLDIyNy41NTZjMCwxMjUuMTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NiwyMjcuNTU2Yy03Mi41MzMsMC0xMzYuNTMzLTMyLjcxMS0xNzcuNzc4LTg1LjMzMw0KCWMzOC40LDMxLjI4OSw4OC4xNzgsNDkuNzc4LDE0Mi4yMjIsNDkuNzc4YzEyNS4xNTYsMCwyMjcuNTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NmMwLTU0LjA0NC0xOC40ODktMTAzLjgyMi00OS43NzgtMTQyLjIyMg0KCUM0MjIuNCw5MS4wMjIsNDU1LjExMSwxNTUuMDIyLDQ1NS4xMTEsMjI3LjU1NnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMzMxLjM3OCwzMzEuMzc4Yy04LjUzMyw4LjUzMy0yMi43NTYsOC41MzMtMzEuMjg5LDBsLTcyLjUzMy03Mi41MzNsLTcyLjUzMyw3Mi41MzMNCgljLTguNTMzLDguNTMzLTIyLjc1Niw4LjUzMy0zMS4yODksMGMtOC41MzMtOC41MzMtOC41MzMtMjIuNzU2LDAtMzEuMjg5bDcyLjUzMy03Mi41MzNsLTcyLjUzMy03Mi41MzMNCgljLTguNTMzLTguNTMzLTguNTMzLTIyLjc1NiwwLTMxLjI4OWM4LjUzMy04LjUzMywyMi43NTYtOC41MzMsMzEuMjg5LDBsNzIuNTMzLDcyLjUzM2w3Mi41MzMtNzIuNTMzDQoJYzguNTMzLTguNTMzLDIyLjc1Ni04LjUzMywzMS4yODksMGM4LjUzMyw4LjUzMyw4LjUzMywyMi43NTYsMCwzMS4yODlsLTcyLjUzMyw3Mi41MzNsNzIuNTMzLDcyLjUzMw0KCUMzMzkuOTExLDMwOC42MjIsMzM5LjkxMSwzMjIuODQ0LDMzMS4zNzgsMzMxLjM3OHoiLz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+        </button>
+      </li>
+      <a v-on:click="removeAll" class="btn-del-all">Удалить всё</a>
+    </ul>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
