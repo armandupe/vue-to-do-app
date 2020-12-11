@@ -1,3 +1,9 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 :root {
   --border-radius: 10px;
   --box-shadow: 2px 5px 17px -5px #000;
@@ -6,14 +12,23 @@
 }
 
 body {
- background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(255, 229, 168, 1) 0%,
-    rgba(251, 174, 222, 1) 100.7%
-  );
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  background-image: radial-gradient(
+     circle farthest-corner at 10% 20%,
+     rgba(255, 229, 168, 1) 0%,
+     rgba(251, 174, 222, 1) 100.7%
+   );
+}
+
+.container {
+   display: flex;
+   height: 100vh;
+   padding: 2rem;
+   justify-content: center;
 }
 
 #app {
@@ -23,6 +38,7 @@ body {
   padding: 1rem;
   transition: all 0.2s;
   width: 700px;
+  align-self: center;
 }
 
 .todo-app__icon {
@@ -183,14 +199,14 @@ body {
 }
 
 .btn-del-all {
-  max-width: 205px;
+  text-align: center;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   display: none;
   margin-top: 2rem;
   color: #fff;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 1rem;
   background-size: 200% auto;
   transition: 0.5s;
   background-image: linear-gradient(to right, #e52d27 0%, #b31217 51%, #e52d27 100%);
