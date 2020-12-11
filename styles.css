@@ -1,43 +1,37 @@
 :root {
-  --border-radius: 10px;
-  --box-shadow: 2px 5px 17px -5px #000;
+  --font-family: "Montserrat", sans-serif;
+  --app-bg: #fff;
+  --app-width: 700px;
   --error-text-color: #ff1e2c;
   --border-color: #eae6e6;
+  --checkbox-checked: greenyellow;
+  --checkbox-hover: #dbdbdb;
+  --border-radius: 10px;
+  --box-shadow: 2px 5px 17px -5px #000;
+  --transition-time: 0.5s;
 }
 
 body {
- background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(255, 229, 168, 1) 0%,
-    rgba(251, 174, 222, 1) 100.7%
-  );
+  background-color: rgba(255, 229, 168, 1);
   display: flex;
   justify-content: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-family);
 }
 
 #app {
-  background: #fff;
+  background: var(--app-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: 1rem;
-  transition: all 0.2s;
-  width: 700px;
+  width: var(--app-width);
 }
-
-.todo-app__icon {
-  max-width: 100px;
-  max-height: 100px;
-}
-
-
 
 .todo-app__input-container {
   display: flex;
   justify-content: flex-end;
   position: relative;
   text-align: center;
-  transition: 0.5s;
+  transition: var(--transition-time);
 }
 
 .todo-app__input {
@@ -46,7 +40,7 @@ body {
   height: 1em;
   padding: 1em 0;
   border: 1px solid var(--border-color);
-  transition: 0.3s;
+  transition: var(--transition-time);
 }
 
 .todo-app__input:hover {
@@ -66,7 +60,7 @@ body {
   border: 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  color: #eee;
+  color: #fff;
   font-weight: bold;
   width: auto;
   height: 100%;
@@ -74,7 +68,7 @@ body {
   background-image: linear-gradient(to right, #1fa2ff 0%, #12d8fa 51%, #1fa2ff 100%);
   cursor: pointer;
   outline: none;
-  transition: 0.5s;
+  transition: var(--transition-time);
 }
 
 .input-add-btn:hover {
@@ -100,11 +94,11 @@ body {
 }
 
 .todo-app__label:hover .todo-app__checkbox ~ .todo-app__checkbox-checkmark {
-  background-color: #dbdbdb;
+  background-color: var(--checkbox-hover);
 }
 
 .todo-app__label .todo-app__checkbox:checked ~ .todo-app__checkbox-checkmark {
-  background-color: greenyellow;
+  background-color: var(--checkbox-checked);
 }
 
 .todo-app__checkbox {
@@ -123,10 +117,10 @@ body {
 
 .todo-app__checkbox-checkmark {
   position: absolute;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  margin: 1rem 0 0.6rem 0.5rem;
+  border-radius: 50%;
   height: 100%;
-  width: 25px;
+  width: 40px;
   background-color: #eee;
 }
 
@@ -134,11 +128,11 @@ body {
   position: absolute;
   content: "";
   display: none;
-  left: 9px;
-  top: 10px;
+  left: 1rem;
+  top: 0.6rem;
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: solid #fff;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
@@ -149,25 +143,30 @@ body {
 
 .todo-app__del-text {
   color: rgba(219, 36, 36, 0.7);
-  margin-left: 45px;
-  word-break: break-all;
 }
 
-.todo-app__todo-text {
+.todo-app__todo-text,
+.todo-app__del-text {
   word-break: break-all;
   margin-left: 45px;
+  display: inline-block;
+  padding: 1rem;
 }
 
 .todo-app__btn-remove-todo {
   position: absolute;
   right: 0;
-  top: 0.25rem;
+  top: 1.25rem;
   outline: none;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition-time);
   width: 40px;
   background: transparent;
+}
+
+.todo-app__remove-btns {
+  display: flex;
 }
 
 .todo-app__btn-remove-todo:hover {
@@ -175,7 +174,7 @@ body {
 }
 
 .todo-app__close-icon {
-  transition: .5s;
+  transition: var(--transition-time);
 }
 
 .todo-app__btn-remove-todo:hover .todo-app__close-icon {
@@ -183,22 +182,22 @@ body {
 }
 
 .btn-del-all {
+  display: block;
+  border: 0;
+  font-family: inherit;
+  font-size: 1rem;
   max-width: 205px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   margin-top: 2rem;
   color: #fff;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 1rem 2rem;
   background-size: 200% auto;
-  transition: 0.5s;
+  transition: var(--transition-time);
   background-image: linear-gradient(to right, #e52d27 0%, #b31217 51%, #e52d27 100%);
 }
 
 .btn-del-all:hover {
   background-position: right center;
-}
-
-.hidden {
-  display: none;
 }

@@ -6,7 +6,7 @@ new Vue({
     delMsg: 'Удалить всё',
     errorInputMsg: 'Напишите что-нибудь, пожалуйста :)',
     todos: [],
-    isVisible: false,
+    isVisibleDelAll: false,
     isHidden: true
   },
   methods: {
@@ -24,7 +24,7 @@ new Vue({
         this.isHidden = true;
         errorMsg.textContent = ' ';
 
-        this.isVisible = true;
+        this.isVisibleDelAll = true;
 
         this.saveToDos();
 
@@ -41,7 +41,7 @@ new Vue({
     removeToDo(n) {
       this.todos.splice(n, 1);
       if (this.todos.length == 0) {
-        this.isVisible = false;
+        this.isVisibleDelAll = false;
       }
       this.saveToDos();
     },
@@ -51,7 +51,7 @@ new Vue({
         const listEl = li[i];
         listEl.parentNode.removeChild(listEl);
       }
-      this.isVisible = false;
+      this.isVisibleDelAll = false;
       localStorage.removeItem('todos');
     },
     check() {
@@ -67,7 +67,7 @@ new Vue({
       }
     }
     if (this.todos.length > 0) {
-      this.isVisible = true;
+      this.isVisibleDelAll = true;
     }
   }
 })     
