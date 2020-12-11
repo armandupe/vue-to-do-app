@@ -1,37 +1,49 @@
 new Vue({
   el: "#app",
   data: {
-    todos: []
+    title: 'Задачи',
+    addMsg: 'Добавить',
+    delMsg: 'Удалить всё',
+    errorInputMsg: 'Напишите что-нибудь, пожалуйста :)',
+    todos: [],
+    isVisible: false,
+    isHidden: true
   },
   methods: {
     addTodo() {
       let text = document.querySelector('.todo-app__input');
       text = text.value;
       const regExp = text.match(/\s{2,}/g);
-console.log(this.todos);
+
       if (text != '' && text != ' ' && !regExp) {
         this.todos.push({ text, done: false, id: Math.random() })
         let clearInputValue = document.querySelector('.todo-app__input');
         clearInputValue.value = '';
 
-        let delBtn = document.querySelector('.btn-del-all');
-        delBtn.style.display = 'block';
-
         const errorMsg = document.querySelector('.todo-app__input-error-msg');
-        errorMsg.classList.add('hidden');
+        this.isHidden = true;
         errorMsg.textContent = ' ';
+
+        this.isVisible = true;
+
+        this.saveToDos();
+
       } else {
         const errorMsg = document.querySelector('.todo-app__input-error-msg');
-        errorMsg.classList.remove('hidden');
-        errorMsg.textContent = 'Напишите что-нибудь, пожалуйста :)';
+        this.isHidden = false;
+        errorMsg.textContent = this.errorInputMsg;
       }
     },
-    deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id)
+    saveToDos() {
+      const ListOfTasks = JSON.stringify(this.todos);
+      localStorage.setItem('todos', ListOfTasks);
+    },
+    removeToDo(n) {
+      this.todos.splice(n, 1);
       if (this.todos.length == 0) {
-        let delBtn = document.querySelector('.btn-del-all');
-        delBtn.style.display = 'none';
+        this.isVisible = false;
       }
+      this.saveToDos();
     },
     removeAll() {
       const li = document.querySelectorAll('.todo-app__list-element')
@@ -39,14 +51,23 @@ console.log(this.todos);
         const listEl = li[i];
         listEl.parentNode.removeChild(listEl);
       }
-
-      let delBtn = document.querySelector('.btn-del-all');
-      delBtn.style.display = 'none';
-
+      this.isVisible = false;
+      localStorage.removeItem('todos');
     },
-    check(todo) {
-      todo.done = !todo.none;
+    check() {
+      this.todos.done = true;
+    },
+  },
+  mounted() {
+    if (localStorage.getItem('todos')) {
+      try {
+        this.todos = JSON.parse(localStorage.getItem('todos'));
+      } catch (e) {
+        localStorage.removeItem('todos');
+      }
     }
-
+    if (this.todos.length > 0) {
+      this.isVisible = true;
+    }
   }
 })     

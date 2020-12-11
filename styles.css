@@ -186,7 +186,6 @@ body {
   max-width: 205px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  display: none;
   margin-top: 2rem;
   color: #fff;
   cursor: pointer;
