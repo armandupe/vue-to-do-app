@@ -5,29 +5,6 @@
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
-}
-
-:root {
-  --font-family: "Montserrat", sans-serif;
-  --app-bg: #fff;
-  --app-width: 700px;
-  --error-text-color: #ff1e2c;
-  --border-color: #eae6e6;
-  --checkbox-checked: rgb(135, 189, 53);
-  --checkbox-hover: #dbdbdb;
-  --border-radius: 10px;
-  --box-shadow: 3px 1px 10px -5px #2e2a2a;
-  --transition-time: 0.5s;
-}
-
-body {
-  background-color: rgba(255, 229, 168, 1);
-  display: flex;
-  justify-content: center;
-  font-family: var(--font-family);
-}
-
-#app {
   background: var(--app-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
