@@ -141,7 +141,7 @@ body {
   }
 
   .del-text {
-    color: rgba(219, 36, 36, 0.7);
+    color: rgba(151, 143, 143, 0.5);
   }
 
   .todo-title {
@@ -151,18 +151,21 @@ body {
     margin-bottom: 0;
   }
 
-  .todo-text,
-  .del-text {
+  .todo-text {
     word-break: break-all;
     margin-left: 45px;
     display: inline-block;
     padding: 1rem;
+
+    p {
+      font-size: medium;
+    }
   }
 
   .btn-remove-todo {
     position: absolute;
     right: 0;
-    top: 1.25rem;
+    top: 0.25rem;
     outline: none;
     border: none;
     cursor: pointer;
