@@ -10,4 +10,8 @@ import ToDoList from './components/ToDoList.vue'
   <footer>armandupe 2024</footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+footer {
+  margin-top: 10rem;
+}
+</style>

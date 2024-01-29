@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import type { Ref } from 'vue'
+import type { ToDo } from '@/interfaces/main.ts'
 
 const title = ref('Задачи')
 const addMsg = ref('Добавить')
 const delMsg = ref('Удалить всё')
-const todos = ref([])
+const todos = ref([]) as Ref<ToDo[]>
 const toDoTitle = ref('')
 const toDoDescr = ref('')
 const isVisibleDelAll = ref(false)
-const listEl = ref(null)
 
 onMounted(() => {
   const storedTodos = localStorage.getItem('todos')
@@ -26,8 +27,8 @@ onMounted(() => {
 
 const addTodo = () => {
   todos.value.push({
-    toDoTitle: toDoTitle.value,
-    toDoDescr: toDoDescr.value,
+    title: toDoTitle.value,
+    descr: toDoDescr.value,
     done: false,
     id: Math.random()
   })
@@ -42,21 +43,16 @@ const saveToDos = () => {
   localStorage.setItem('todos', ListOfTasks)
 }
 
-const removeToDo = (index: string | number) => {
+const removeToDo = (index: number) => {
   todos.value.splice(index, 1)
   if (!todos.value.length) isVisibleDelAll.value = false
   saveToDos()
 }
 
-const removeAll = (listEl: HTMLElement[], isVisibleDelAll: { value: boolean }) => {
-  const listElements = listEl
-  listElements.forEach((el: HTMLElement) => el.remove())
+const removeAll = () => {
+  todos.value = []
   isVisibleDelAll.value = false
   localStorage.removeItem('todos')
-}
-
-const check = () => {
-  todos.value.done.value = true
 }
 </script>
 
@@ -82,21 +78,22 @@ const check = () => {
     </button>
   </div>
   <ul class="list">
-    <li ref="listEl" class="list-element" v-for="(todo, n) in todos" :key="todo.id">
+    <li class="list-element" v-for="(todo, n) in todos" :key="todo.id">
       <label class="label">
         <input type="checkbox" class="checkbox" v-model="todo.done" />
-        <span @click="check(this)" class="checkbox-checkmark"></span>
+        <span class="checkbox-checkmark"></span>
       </label>
       <div :class="{ 'del-text': todo.done }" class="todo-text">
-        <h2 class="todo-title">{{ todo.toDoTitle }}</h2>
+        <h2 class="todo-title">{{ todo.title }}</h2>
         <p>
-          {{ todo.toDoDescr }}
+          {{ todo.descr }}
         </p>
       </div>
       <button class="btn-remove-todo" v-if="todo.done" @click="removeToDo(n)">
         <img
           class="close-icon"
-          alt="close"
+          title="Удалить"
+          alt="close icon"
           src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDU1LjExMSA0NTUuMTExIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NTUuMTExIDQ1NS4xMTE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgc3R5bGU9ImZpbGw6I0UyNEM0QjsiIGN4PSIyMjcuNTU2IiBjeT0iMjI3LjU1NiIgcj0iMjI3LjU1NiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0QxNDAzRjsiIGQ9Ik00NTUuMTExLDIyNy41NTZjMCwxMjUuMTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NiwyMjcuNTU2Yy03Mi41MzMsMC0xMzYuNTMzLTMyLjcxMS0xNzcuNzc4LTg1LjMzMw0KCWMzOC40LDMxLjI4OSw4OC4xNzgsNDkuNzc4LDE0Mi4yMjIsNDkuNzc4YzEyNS4xNTYsMCwyMjcuNTU2LTEwMi40LDIyNy41NTYtMjI3LjU1NmMwLTU0LjA0NC0xOC40ODktMTAzLjgyMi00OS43NzgtMTQyLjIyMg0KCUM0MjIuNCw5MS4wMjIsNDU1LjExMSwxNTUuMDIyLDQ1NS4xMTEsMjI3LjU1NnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMzMxLjM3OCwzMzEuMzc4Yy04LjUzMyw4LjUzMy0yMi43NTYsOC41MzMtMzEuMjg5LDBsLTcyLjUzMy03Mi41MzNsLTcyLjUzMyw3Mi41MzMNCgljLTguNTMzLDguNTMzLTIyLjc1Niw4LjUzMy0zMS4yODksMGMtOC41MzMtOC41MzMtOC41MzMtMjIuNzU2LDAtMzEuMjg5bDcyLjUzMy03Mi41MzNsLTcyLjUzMy03Mi41MzMNCgljLTguNTMzLTguNTMzLTguNTMzLTIyLjc1NiwwLTMxLjI4OWM4LjUzMy04LjUzMywyMi43NTYtOC41MzMsMzEuMjg5LDBsNzIuNTMzLDcyLjUzM2w3Mi41MzMtNzIuNTMzDQoJYzguNTMzLTguNTMzLDIyLjc1Ni04LjUzMywzMS4yODksMGM4LjUzMyw4LjUzMyw4LjUzMywyMi43NTYsMCwzMS4yODlsLTcyLjUzMyw3Mi41MzNsNzIuNTMzLDcyLjUzMw0KCUMzMzkuOTExLDMwOC42MjIsMzM5LjkxMSwzMjIuODQ0LDMzMS4zNzgsMzMxLjM3OHoiLz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"
         />
       </button>
