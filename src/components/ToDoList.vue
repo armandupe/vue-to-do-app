@@ -3,13 +3,14 @@ import { ref, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import type { ToDo } from '@/interfaces/main.ts'
 
-const title = ref('Задачи')
 const addMsg = ref('Добавить')
 const delMsg = ref('Удалить всё')
+const delCheckedMsg = ref('Удалить выбранные')
 const todos = ref([]) as Ref<ToDo[]>
 const toDoTitle = ref('')
 const toDoDescr = ref('')
 const isVisibleDelAll = ref(false)
+const isDataChanged = ref(false)
 
 onMounted(() => {
   const storedTodos = localStorage.getItem('todos')
@@ -54,10 +55,30 @@ const removeAll = () => {
   isVisibleDelAll.value = false
   localStorage.removeItem('todos')
 }
+
+const removeChecked = () => {
+  todos.value = todos.value.filter((todo) => !todo.done)
+  if (!todos.value.length) isVisibleDelAll.value = false
+  saveToDos()
+}
+
+const changeToDoInfo = (event: Event, todo: ToDo, type: string) => {
+  const inputElement = event.target as HTMLInputElement
+  if (inputElement && type === 'title') {
+    todo.title = inputElement.value
+  } else if (inputElement && type === 'descr') {
+    todo.descr = inputElement.value
+  }
+  saveToDos()
+  isDataChanged.value = true
+  setTimeout(() => {
+    isDataChanged.value = false
+  }, 1000)
+}
 </script>
 
 <template>
-  <h1 class="title">{{ title }}</h1>
+  <div class="success-toast" v-text="'Сохранено'" v-show="isDataChanged" />
   <div class="input-container">
     <input
       v-model.trim="toDoTitle"
@@ -73,7 +94,7 @@ const removeAll = () => {
       placeholder="Описание задачи"
       @keyup.enter="addTodo()"
     ></textarea>
-    <button :disabled="!toDoTitle || !toDoDescr" @click="addTodo" class="input-add-btn">
+    <button :disabled="!toDoTitle || !toDoDescr" @click="addTodo" class="btn-add">
       {{ addMsg }}
     </button>
   </div>
@@ -83,11 +104,19 @@ const removeAll = () => {
         <input type="checkbox" class="checkbox" v-model="todo.done" />
         <span class="checkbox-checkmark"></span>
       </label>
-      <div :class="{ 'del-text': todo.done }" class="todo-text">
-        <h2 class="todo-title">{{ todo.title }}</h2>
-        <p>
-          {{ todo.descr }}
-        </p>
+      <div class="todo-text">
+        <input
+          :class="{ 'del-text': todo.done }"
+          class="input"
+          type="text"
+          @change="changeToDoInfo($event, todo, 'title')"
+          :value="todo.title"
+        />
+        <textarea
+          :value="todo.descr"
+          @change="changeToDoInfo($event, todo, 'descr')"
+          :class="{ 'del-text': todo.done }"
+        />
       </div>
       <button class="btn-remove-todo" v-if="todo.done" @click="removeToDo(n)">
         <img
@@ -98,8 +127,26 @@ const removeAll = () => {
         />
       </button>
     </li>
-    <li class="remove-btns">
-      <button @click="removeAll" v-show="isVisibleDelAll" class="btn-del-all">{{ delMsg }}</button>
-    </li>
   </ul>
+  <div class="remove-btns">
+    <button @click="removeAll" v-show="isVisibleDelAll" class="btn-del">{{ delMsg }}</button>
+    <button @click="removeChecked" v-show="isVisibleDelAll" class="btn-del">
+      {{ delCheckedMsg }}
+    </button>
+  </div>
 </template>
+<style scoped>
+.success-toast {
+  position: absolute;
+  z-index: 10;
+  top: -3rem;
+  right: 0;
+  padding: 0 1rem;
+  width: fit-content;
+  height: auto;
+  background-color: rgb(94, 206, 94);
+  color: white;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+</style>

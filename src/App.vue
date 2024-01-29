@@ -3,7 +3,9 @@ import ToDoList from './components/ToDoList.vue'
 </script>
 
 <template>
-  <header v-text="'Vue 3 ToDo App'" />
+  <header>
+    <h1>Vue 3 ToDo App</h1>
+  </header>
   <main class="todo-app">
     <ToDoList />
   </main>
@@ -11,7 +13,12 @@ import ToDoList from './components/ToDoList.vue'
 </template>
 
 <style scoped>
+header h1 {
+  font-weight: 600;
+  font-size: 2rem;
+  text-align: center;
+}
 footer {
-  margin-top: 10rem;
+  margin-top: 3rem;
 }
 </style>
