@@ -4,53 +4,32 @@ new Vue({
     title: 'Задачи',
     addMsg: 'Добавить',
     delMsg: 'Удалить всё',
-    errorInputMsg: 'Напишите что-нибудь, пожалуйста :)',
     todos: [],
+    toDoTitle: '',
+    toDoDescr: '',
     isVisibleDelAll: false,
-    isHidden: true
+    isBtnDisabled: false
   },
   methods: {
-    addTodo() {
-      let text = document.querySelector('.todo-app__input');
-      text = text.value;
-      const regExp = text.match(/\s{2,}/g);
-
-      if (text != '' && text != ' ' && !regExp) {
-        this.todos.push({ text, done: false, id: Math.random() })
-        let clearInputValue = document.querySelector('.todo-app__input');
-        clearInputValue.value = '';
-
-        const errorMsg = document.querySelector('.todo-app__input-error-msg');
-        this.isHidden = true;
-        errorMsg.textContent = ' ';
-
-        this.isVisibleDelAll = true;
-
-        this.saveToDos();
-
-      } else {
-        const errorMsg = document.querySelector('.todo-app__input-error-msg');
-        this.isHidden = false;
-        errorMsg.textContent = this.errorInputMsg;
-      }
-    },
+  addTodo() {
+      this.todos.push({ toDoTitle:this.toDoTitle, toDoDescr: this.toDoDescr, done: false, id: Math.random() });
+      this.toDoTitle = '';
+      this.toDoDescr = '';
+      this.isVisibleDelAll = true;
+      this.saveToDos();
+  },
     saveToDos() {
       const ListOfTasks = JSON.stringify(this.todos);
       localStorage.setItem('todos', ListOfTasks);
     },
-    removeToDo(n) {
-      this.todos.splice(n, 1);
-      if (this.todos.length == 0) {
-        this.isVisibleDelAll = false;
-      }
+    removeToDo(index) {
+      this.todos.splice(index, 1);
+      if (!this.todos.length) this.isVisibleDelAll = false;
       this.saveToDos();
     },
     removeAll() {
-      const li = document.querySelectorAll('.todo-app__list-element')
-      for (let i = 0; i < li.length; i++) {
-        const listEl = li[i];
-        listEl.parentNode.removeChild(listEl);
-      }
+      const listElements = this.$refs.listEl;
+      listElements.forEach(el => el.remove());
       this.isVisibleDelAll = false;
       localStorage.removeItem('todos');
     },
@@ -59,15 +38,16 @@ new Vue({
     },
   },
   mounted() {
-    if (localStorage.getItem('todos')) {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
       try {
-        this.todos = JSON.parse(localStorage.getItem('todos'));
+        this.todos = JSON.parse(storedTodos);
+        if (this.todos.length > 0) {
+          this.isVisibleDelAll = true;
+        }
       } catch (e) {
         localStorage.removeItem('todos');
       }
-    }
-    if (this.todos.length > 0) {
-      this.isVisibleDelAll = true;
     }
   }
 })     
